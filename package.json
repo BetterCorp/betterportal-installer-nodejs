@@ -12,6 +12,10 @@
     "betterportal",
     "npx"
   ],
+  "files": [
+    "README.md",
+    "bin.js"
+  ],
   "author": "BetterCorp <support@bettercorp.dev>",
   "bin": "./bin.js",
   "dependencies": {

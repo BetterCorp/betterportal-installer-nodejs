@@ -102,7 +102,7 @@ if (gitignore.indexOf("/betterportal-ui/node_modules") < 0)
 fs.writeFileSync(gitIgnoreFile, gitignore.join(os.EOL));
 
 console.warn("Final NPM I run");
-const execResult = child_process.execSync("npm npmi-all", {
+const execResult = child_process.execSync("npm run npmi-all", {
   encoding: "utf8",
   cwd: uiDir,
 });
