@@ -1,0 +1,20 @@
+{
+  "name": "betterportal",
+  "license": "AGPL-3.0-only",
+  "repository": {
+    "url": "https://github.com/BetterCorp/service-base-plugin-betterportal"
+  },
+  "version": "1.0.0",
+  "description": "BetterPortal BSB Install NPX package",
+  "scripts": {},
+  "keywords": [
+    "bsb",
+    "betterportal",
+    "npx"
+  ],
+  "author": "BetterCorp <support@bettercorp.dev>",
+  "bin": "./bin.js",
+  "dependencies": {
+    "fs-extra": "^11.1.0"
+  }
+}
