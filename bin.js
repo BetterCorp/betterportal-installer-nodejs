@@ -8,14 +8,15 @@ const path = require("path");
 const os = require("os");
 const child_process = require("child_process");
 const fse = require("fs-extra");
+const cwd = process.cwd();
 
-const packageJsonFile = path.join(process.cwd(), "./package.json");
+console.log("Working in: " + cwd);
+const packageJsonFile = path.join(cwd, "./package.json");
 if (!fs.existsSync(packageJsonFile)) {
   console.error(`No package.json file found in the current directory.`);
   process.exit(1);
 }
 
-const cwd = process.env.INIT_CWD || process.cwd();
 const BPSDK_UI_DIR = path.join(
   cwd,
   "./node_modules/@bettercorp/service-base-plugin-betterportal/betterportal-ui"
@@ -41,7 +42,7 @@ if (
     "npm i --save @bettercorp/service-base-plugin-betterportal",
     {
       encoding: "utf8",
-      cwd: process.cwd(),
+      cwd: cwd,
     }
   );
   console.log(execResult);
@@ -51,7 +52,7 @@ if (
     "npm remove @bettercorp/service-base-plugin-betterportal && npm i --save @bettercorp/service-base-plugin-betterportal",
     {
       encoding: "utf8",
-      cwd: process.cwd(),
+      cwd: cwd,
     }
   );
   console.log(execResult);
@@ -119,9 +120,15 @@ console.warn(" - build-ui (This builds the UI)");
 console.warn(" - npmi-ui (This installs the UI dependencies)");
 console.warn(" - npmci-ui (This installs the UI dependencies for CI/CD)");
 console.warn("");
-console.warn("The following root project commands are available: (npm run ___)");
+console.warn(
+  "The following root project commands are available: (npm run ___)"
+);
 console.warn(" - build-all (This builds the UI and the BSB plugin)");
-console.warn(" - npmi-all (This installs the UI and the BSB plugin dependencies)");
-console.warn(" - npmci-all (This installs the UI and the BSB plugin dependencies for CI/CD)");
+console.warn(
+  " - npmi-all (This installs the UI and the BSB plugin dependencies)"
+);
+console.warn(
+  " - npmci-all (This installs the UI and the BSB plugin dependencies for CI/CD)"
+);
 console.warn("");
 console.warn("___________________________________________");
