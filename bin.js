@@ -105,7 +105,7 @@ fs.writeFileSync(gitIgnoreFile, gitignore.join(os.EOL));
 console.warn("Final NPM I run");
 const execResult = child_process.execSync("npm run npmi-all", {
   encoding: "utf8",
-  cwd: uiDir,
+  cwd: cwd,
 });
 
 console.log(execResult);
