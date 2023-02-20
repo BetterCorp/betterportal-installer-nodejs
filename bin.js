@@ -41,7 +41,7 @@ if (
     "npm i --save @bettercorp/service-base-plugin-betterportal",
     {
       encoding: "utf8",
-      cwd: uiDir,
+      cwd: process.cwd(),
     }
   );
   console.log(execResult);
@@ -51,7 +51,7 @@ if (
     "npm remove @bettercorp/service-base-plugin-betterportal && npm i --save @bettercorp/service-base-plugin-betterportal",
     {
       encoding: "utf8",
-      cwd: uiDir,
+      cwd: process.cwd(),
     }
   );
   console.log(execResult);
