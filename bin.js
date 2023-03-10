@@ -39,7 +39,7 @@ if (
 ) {
   console.warn("Installing @bettercorp/service-base-plugin-betterportal");
   const execResult = child_process.execSync(
-    "npm i --save @bettercorp/service-base-plugin-betterportal",
+    "npm i --save @bettercorp/service-base-plugin-betterportal@latest",
     {
       encoding: "utf8",
       cwd: cwd,
@@ -49,7 +49,7 @@ if (
 } else {
   console.warn("We're going to force update BP");
   const execResult = child_process.execSync(
-    "npm remove @bettercorp/service-base-plugin-betterportal && npm i --save @bettercorp/service-base-plugin-betterportal",
+    "npm remove @bettercorp/service-base-plugin-betterportal && npm i --save @bettercorp/service-base-plugin-betterportal@latest",
     {
       encoding: "utf8",
       cwd: cwd,
