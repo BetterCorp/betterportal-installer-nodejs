@@ -67,7 +67,43 @@ if (!fs.existsSync(BPSDK_UI_DIR)) {
 
 const uiDir = path.join(cwd, "./betterportal-ui");
 console.warn("Copying/Updating BP UI");
+const uiPKGJson = path.join(uiDir, "package.json");
+let existingPackageJson = {};
+let existing = false;
+if (fs.existsSync(uiPKGJson)) {
+  existingPackageJson = JSON.parse(fs.readFileSync(uiPKGJson).toString());
+  existing = true;
+}
 fse.copySync(BPSDK_UI_DIR, uiDir, { overwrite: true });
+if (existing) {
+  console.log("Updating package.json (keeping existing values");
+  let newPackageJson = JSON.parse(fs.readFileSync(uiPKGJson).toString());
+  console.debug(`Setting [scripts.build-base] from [${existingPackageJson.scripts['build-base'] ||'-'}] to [${newPackageJson.scripts['build-base']}]`);
+  newPackageJson.scripts['build-base'] = existingPackageJson.scripts['build-base'];
+  console.debug(`Setting [name] from [${existingPackageJson.name}] to [${newPackageJson.name}]`);
+  newPackageJson.name = existingPackageJson.name;
+  console.debug(`Setting [version] from [${existingPackageJson.version}] to [${newPackageJson.version}]`);
+  newPackageJson.version = existingPackageJson.version;
+  console.debug(`Setting [description] from [${existingPackageJson.description}] to [${newPackageJson.description}]`);
+  newPackageJson.description = existingPackageJson.description;
+  console.debug(`Setting [author] from [${existingPackageJson.author}] to [${newPackageJson.author}]`);
+  newPackageJson.author = existingPackageJson.author;
+  console.debug(`Setting [license] from [${existingPackageJson.license}] to [${newPackageJson.license}]`);
+  newPackageJson.license = existingPackageJson.license;
+
+  for (let deps of Object.keys(existingPackageJson.dependencies || {})){
+    if (newPackageJson.dependencies[deps] !== undefined) continue;
+    console.debug(`Adding dependency [${deps}@${existingPackageJson.dependencies[deps]}]`);
+    newPackageJson.dependencies[deps] = existingPackageJson.dependencies[deps];
+  }
+  for (let deps of Object.keys(existingPackageJson.devDependencies || {})){
+    if (newPackageJson.devDependencies[deps] !== undefined) continue;
+    console.debug(`Adding devDependency [${deps}@${existingPackageJson.devDependencies[deps]}]`);
+    newPackageJson.devDependencies[deps] = existingPackageJson.devDependencies[deps];
+  }
+
+  fs.writeFileSync(uiPKGJson, JSON.stringify(newPackageJson, " ", 2));
+}
 
 console.warn("Updating package.json");
 packageJSON.scripts = packageJSON.scripts || {};
