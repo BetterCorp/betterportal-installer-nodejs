@@ -129,7 +129,7 @@ packageJSON.scripts = packageJSON.scripts || {};
 packageJSON.scripts["build-ui"] = "cd betterportal-ui && npm run build";
 packageJSON.scripts["npmi-ui"] = "cd ./betterportal-ui && npm i";
 packageJSON.scripts["npmci-ui"] = "cd ./betterportal-ui && npm ci";
-packageJSON.scripts["build-all"] = "tsc && npm run build-ui";
+packageJSON.scripts["build-all"] = "npm run build && npm run build-ui";
 packageJSON.scripts["npmi-all"] = "npm i && npm run npmi-ui";
 packageJSON.scripts["npmci-all"] = "npm ci && npm run npmci-ui";
 
